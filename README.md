@@ -99,12 +99,21 @@ NIL
 ## 13. Определите функцию, удаляющую в исходном списке все повторные вхождения элементов.
 
 ```
-(defun unique (list) 
+(defun pr(a lst)
+    (cond
+        ((null lst) nil)
+        ((eq a (car lst)) t)
+        (t(pr a (cdr lst)))
+     )
+)
+
+(defun unique (lst) 
     (cond 
-        ((null list) nil)
-        (t(cons (car list) (unique (delete (car list) (cdr list)))))
+        ((null lst) nil)
+        ((pr (car lst) (cdr lst)) (unique (cdr lst))) 
+        (t(cons (car lst) (unique (cdr lst))))
     ) 
-) 
+)  
 
 (print (unique '(1 1 2)))
 (1 2)
