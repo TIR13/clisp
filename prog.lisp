@@ -8,6 +8,7 @@
 		(t(cons (+ (car lst) 1) (inc (cdr lst))))
 	)
 )
+(write-line "Задача 5")
 ;;; Test 1
 (write-line "Test 1")
 (princ " >> (5 2 3)")
@@ -33,7 +34,7 @@
         (t (cons (car lst) (del (cddr lst))))
      )
 ) 
-
+(write-line "Задача 7")
 ;;; Test 1
 (write-line "Test 1")
 (princ " >> (a b c d e)")
@@ -67,7 +68,7 @@
     )(car lst)(cdr lst)
 ))
 
-
+(write-line "Задача 11")
 ;;; Test 1
 (write-line "Test 1")
 (princ " >> (1 2 3) 2)")
@@ -96,7 +97,7 @@
         (t (cons (car lst) (unique1 (cdr lst))))
     )
 ) 
-
+(write-line "Задача 12")
 ;;; Test 1
 (write-line "Test 1")
 (princ " >> (1 1 1)")
@@ -133,7 +134,7 @@
     ) 
 )  
 
-
+(write-line "Задача 13")
 ;;; Test 1
 (write-line "Test 1")
 (princ " >> (1 1 3)")
@@ -163,6 +164,7 @@
         ((eq k 0) n)
         (t ( cons (t_lis n (- k 1)) nil))
      ))
+(write-line "Задача 19")
 ;;; Test 1
 (write-line "Test 1")
 (princ " >> 3 ")
@@ -197,7 +199,7 @@
         (t( lis (cdr l1) l2)) 
     ) 
 ) 
-
+(write-line "Задача 31")
 ;;; Test 1
 (write-line "Test 1")
 (princ " >> (1 3 3) '(2 6 0)")
