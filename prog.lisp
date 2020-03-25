@@ -212,3 +212,40 @@
 (print (lis '(1 3 3) '(2 3 1)))
 (write-line "")
 
+
+; 41. Реализовать генератор деревьев, чтобы выдаваемые
+; им деревья имели количество вершин, точно соответствующее 
+; числу, указанному в его первом аргументе.
+
+(defun der1 (n k)
+	
+	(cond ((<= n k) nil)
+		(t
+        ((lambda (first)
+            (list k (der1 n first) (der1 n (+ first 1))))
+        (+ (* k 2) 1)))
+	)
+
+)
+(defun der(n)
+        (der1 n 0)
+)
+(write-line "Задача 41")
+
+
+;;; Test 1
+(write-line "Test 1")
+(princ " >> 5")
+(print (der 5))
+(write-line "")
+
+;;; Test 2
+(write-line "Test 2")
+(princ " >> 3")
+(print (der 3))
+(write-line "")
+(write-line "")
+
+
+
+
