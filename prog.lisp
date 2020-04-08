@@ -196,11 +196,13 @@
 ) 
 
 (defun lis (l1 l2) 
-    (cond 
-        ((null l1) nil) 
-        ((eq (car l1) (p (car l1) l2)) (car l1)) 
-        (t( lis (cdr l1) l2)) 
-    ) 
+    ((lambda (first res)
+        (cond 
+            ((null l1) nil) 
+            ((eq first (p first l2)) first) 
+            (t( lis res l2)) 
+        )
+    )(car l1)(cdr l1))     
 ) 
 (write-line "Задача 31")
 ;;; Test 1
