@@ -248,4 +248,35 @@
 
 
 
+;47. Определите функцию УДАЛИТЬ-ВСЕ-СВОЙСТВА,
+;которая удаляет все свойства символа.
+;
+;
 
+(defun del-all (symb)
+	( (lambda (s-list)
+		(if (null s-list)
+			nil
+			(cons (remprop symb (car s-list)) (del-all symb))
+		)) (symbol-plist symb)
+	)
+)
+(write-line "Задача 47")
+;;; Test 1
+(setf (get 'cars 'color) 'red)
+(setf (get 'cars 'тип) 'седан)
+(print "Test 1")
+(print (symbol-plist 'cars))
+(del-all 'cars)
+(print (symbol-plist 'cars))
+(write-line "")
+
+;;; Test 2
+(setf (get 'человек 'возраст) '30)
+
+
+(print "Test 2")
+(print (symbol-plist 'человек))
+(del-all 'человек)
+(print (symbol-plist 'человек))
+(write-line "")
