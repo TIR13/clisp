@@ -129,18 +129,20 @@
 )
 
 (defun unique (lst) 
-    (cond 
-        ((null lst) nil)
-        ((pr (car lst) (cdr lst)) (unique (cdr lst))) 
-        (t(cons (car lst) (unique (cdr lst))))
-    ) 
+    ((lambda (first res)
+        (cond 
+            ((null lst) nil)
+            ((pr first res) (unique res)) 
+            (t(cons first (unique res)))
+        )
+    )(car lst)(cdr lst))
 )  
 
 (write-line "Задача 13")
 ;;; Test 1
 (write-line "Test 1")
 (princ " >> (1 1 3)")
-(print (unique '(1 1 2)))
+(print (unique '(1 1 3)))
 (write-line "")
 
 ;;; Test 2
@@ -149,7 +151,6 @@
 (print (unique '(1 1 1 2 2)))
 (write-line "")
 (write-line "")
-
 
 
 ; 19
