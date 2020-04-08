@@ -137,13 +137,19 @@
 )
 
 (defun unique (lst) 
-    ((lambda (first res)
-        (cond 
-            ((null lst) nil)
-            ((pr first res) (unique res)) 
-            (t(cons first (unique res)))
+    (cond 
+        ((null lst) nil)
+        (t 
+              ((lambda (first res)
+                  ((lambda (dfn)     
+                      (cond 
+                          ((pr first res) dfn) 
+                          (t (cons first dfn))
+                      )
+                  )(unique res))
+              )(car lst)(cdr lst))
         )
-    )(car lst)(cdr lst))
+    )   
 )  
 
 (write-line "Задача 13")
@@ -159,6 +165,7 @@
 (print (unique '(1 1 1 2 2)))
 (write-line "")
 (write-line "")
+
 
 
 ; 19
