@@ -1,54 +1,3 @@
-; 5
-;Определите функцию, которая увеличивает
-;элементы исходного списка на единицу.
-; (9 1 8 2) -> (10 2 9 3)
-(defun inc(lst) 
-	(cond 
-        ((null lst) nil)
-		(t(cons (+ (car lst) 1) (inc (cdr lst))))
-	)
-)
-(write-line "Задача 5")
-;;; Test 1
-(write-line "Test 1")
-(princ " >> (5 2 3)")
-(print (inc '(5 2 3)))
-(write-line "")
-
-;;; Test 2
-(write-line "Test 2")
-(princ " >> (9 1 8 2)")
-(print (inc '(9 1 8 2)))
-(write-line "")
-
-(write-line "")
-
-; 7
-; Определите функцию, удаляющую из исходного 
-; списка элементы с четными номерами.
-;  (9 1 8 2) 2 -> (9 8)
-
-(defun del (lst) 
-    (cond 
-        ((null lst) lst) 
-        (t (cons (car lst) (del (cddr lst))))
-     )
-) 
-(write-line "Задача 7")
-;;; Test 1
-(write-line "Test 1")
-(princ " >> (a b c d e)")
-(print(del '(a b c d e)))
-(write-line "")
-
-;;; Test 2
-(write-line "Test 2")
-(princ " >> (a b c d)")
-(print(del '(a b c d)))
-(write-line "")
-
-(write-line "")
-
 ; 11
 ; Определите функцию, осуществляющую разделение
 ;исходного списка на два подсписка. 
@@ -331,5 +280,63 @@
 (print (symbol-plist 'cars))
 (print "(prov cars col)")
 (print (prov 'cars 'col))
+(write-line "")
+
+
+
+
+
+
+
+
+; 5
+;Определите функцию, которая увеличивает
+;элементы исходного списка на единицу.
+; (9 1 8 2) -> (10 2 9 3)
+(defun inc(lst) 
+	(cond 
+        ((null lst) nil)
+		(t(cons (+ (car lst) 1) (inc (cdr lst))))
+	)
+)
+(write-line "Задача 5")
+;;; Test 1
+(write-line "Test 1")
+(princ " >> (5 2 3)")
+(print (inc '(5 2 3)))
+(write-line "")
+
+;;; Test 2
+(write-line "Test 2")
+(princ " >> (9 1 8 2)")
+(print (inc '(9 1 8 2)))
+(write-line "")
+
+(write-line "")
+
+; 7
+; Определите функцию, удаляющую из исходного 
+; списка элементы с четными номерами.
+;  (9 1 8 2) 2 -> (9 8)
+
+(defun del (lst) 
+    (cond 
+        ((null lst) lst) 
+        (t (cons (car lst) (del (cddr lst))))
+     )
+) 
+(write-line "Задача 7")
+;;; Test 1
+(write-line "Test 1")
+(princ " >> (a b c d e)")
+(print(del '(a b c d e)))
+(write-line "")
+
+;;; Test 2
+(write-line "Test 2")
+(princ " >> (a b c d)")
+(print(del '(a b c d)))
+(write-line "")
+
 (write-line "")
 
