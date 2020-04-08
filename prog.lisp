@@ -91,11 +91,13 @@
 ;(1 1 1) -> (1 1)
 
 (defun unique1 (lst) 
-    (cond 
-        ((null lst) lst) 
-        ((eq (car lst) (cadr lst)) (cons (car lst) (unique1 (cddr lst)))) 
-        (t (cons (car lst) (unique1 (cdr lst))))
-    )
+    ((lambda (first res)
+        (cond 
+            ((null lst) lst) 
+            ((eq first (cadr lst)) (cons first (unique1 (cddr lst)))) 
+            (t (cons first (unique1 res)))
+        )
+     )(car lst)(cdr lst))
 ) 
 (write-line "Задача 12")
 ;;; Test 1
