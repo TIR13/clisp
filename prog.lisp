@@ -57,24 +57,31 @@
 ; (9 1 8 2) 2 -> ((9 1) (8 2))
 
 
-
 (defun split (lst k)
-    ((lambda (first restl)
-        (cond 
-            ((null lst) nil)
-            ( (> k 0) (cons (cons first (car (split restl (- k 1)))) (cdr (split restl (- k 1)))))
-            (t (list (car (split restl (- k 1))) (cons first (cadr (split restl (- k 1))))))
-        )
-    )(car lst)(cdr lst)
-))
+    (cond
+        ((null lst) nil)
+            (t
+              ((lambda (first res)
+                  ((lambda (x y)
+                       (cond
+                           ((> k 0)
+                                (cons (cons first x) (cdr y)))
+                            (t  
+                                (list x (cons first (cadr y))))
+                        )
+                     )(car (split res (- k 1))) (split res (- k 1)))
+                )(car lst)(cdr lst))
+         )
+    )
+)
 
 (write-line "Задача 11")
 ;;; Test 1
 (write-line "Test 1")
 (princ " >> (1 2 3) 2)")
-(print (split '(1 2 3) 2))
+(print (split '(1 2 3) 2)
+)
 (write-line "")
-
 ;;; Test 2
 (write-line "Test 2")
 (princ " >> (1 2 3) 3)")
@@ -82,6 +89,7 @@
 (write-line "")
 
 (write-line "")
+
 
 
 ; 12
