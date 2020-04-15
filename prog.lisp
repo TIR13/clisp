@@ -6,11 +6,14 @@
 ;который проверяет, обладает ли символ данным свойством.
 
 (defun prov (symb sv)
-	(if(null (get symb sv)) nil t)
+	(cond
+		((null (remprop symb sv)) nil)
+		(t T)
+    )
 )
 (write-line "Задача 48")
 ;;; Test 1
-(setf (get 'cars 'color) 'red)
+(setf (get 'cars 'color) 'nil)
 (setf (get 'cars 'тип) 'седан)
 
 
