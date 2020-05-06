@@ -1,4 +1,3 @@
-; исправлено!
 ;48. Функция GET возвращает в качестве результата NIL   
 ;в том случае, если у символа нет данного свойства, либо
 ;если значением этого свойства является NIL.
@@ -7,10 +6,17 @@
 ;который проверяет, обладает ли символ данным свойством.
 
 (defun prov (symb sv)
-	(cond
-		((null (remprop symb sv)) nil)
-		(t T)
-    )
+	(prov_sv sv (symbol-plist symb))
+)
+
+
+
+(defun prov_sv(sv list)
+  (cond
+      ((null list) nil)
+      ((equal sv (car list)) T)
+      (t (prov_sv sv (cddr list)))
+  )
 )
 (write-line "Задача 48")
 ;;; Test 1
