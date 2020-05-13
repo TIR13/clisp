@@ -5,6 +5,22 @@
 (print (self))
 
 
+;2.Определите функицонал (MAPLIST fn список) для одного списочного аргумента
+(defmacro top(s)
+    `(prog1
+        (setq top (car ,s))
+        (setq ,s (cdr ,s))
+    )
+)
+
+(setq stack `(1 2 3))
+
+(print (top stack))
+(print (top stack))
+(print (top stack))
+(print (top stack))
+
+
 ;3. Определите лисповскую форму (IF условие p q) в виде макроса.
 
 (defmacro iff (cond p q)
