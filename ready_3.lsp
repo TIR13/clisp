@@ -55,3 +55,15 @@
 (write-line "")
 
 (write-line "")
+
+
+; 5. Определите в виде макроса форму (REPEAT e UNTIL p) паскалевского типа.
+(defmacro repeat (e until p)
+    `(if ,p nil
+        (and (print ,e) (repeat ,e until ,p))
+    )
+)
+ 
+(let ((i 0)) (repeat  (incf i) until (>= i 10)))
+
+
