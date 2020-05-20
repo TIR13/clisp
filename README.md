@@ -134,11 +134,6 @@ Hello, World!
   (println (str (str i "! = "))
 ```
 
-### Hello, World!:
-```Clojure
->(printf "Hello, World!")
-Hello, World!
-```
 
 ### Fibb:
 ```Clojure
