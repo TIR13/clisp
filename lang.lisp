@@ -1,16 +1,16 @@
 
-; минимальный элемент в матрице
-(defun minn (matr)
+; РјРёРЅРёРјР°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ РІ РјР°С‚СЂРёС†Рµ
+(defun Minn (matr)
     ((lambda (lst)(min_s lst))(mapcar #'min_s matr))
 )
 
-;максимальный элемент в матрице
-(defun maxx (matr)
+;РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ СЌР»РµРјРµРЅС‚ РІ РјР°С‚СЂРёС†Рµ
+(defun Maxx (matr)
     ((lambda (lst)(max_s lst ))(mapcar #'max_s matr ))
 )
 
-;определитель квадратной матрицы
-(defun determ (matr)
+;РѕРїСЂРµРґРµР»РёС‚РµР»СЊ РєРІР°РґСЂР°С‚РЅРѕР№ РјР°С‚СЂРёС†С‹
+(defun Determ (matr)
     ((lambda (n)
         (cond (
             (= 2 n) (- (* (caar matr) (cadr (cadr matr))) (* (cadar matr) (caadr matr))))
@@ -23,29 +23,35 @@
     )(length matr))
 )
 
-; Сложение
-(defun sum(matr1 matr2)
+; РЎР»РѕР¶РµРЅРёРµ
+(defun Sum(matr1 matr2)
     (cond
         ((and (null matr1) (null matr2)) nil)
         (t
             (cons
                 (mapcar '+ (car matr1) (car matr2))
-                (add-matrix (cdr matr1) (cdr matr2))
+                (Sum (cdr matr1) (cdr matr2))
             )
         )
     )
 )
 
- ; матричное умножение
-(defun multiply (matr1 matr2)
+ ; РјР°С‚СЂРёС‡РЅРѕРµ СѓРјРЅРѕР¶РµРЅРёРµ
+(defun Multiplay (matr1 matr2)
     (cond
         ((null matr1) nil)
-        (t (cons (row_col (car matr1) matr2) (multiply (cdr matr1) matr2)))
+        (t (cons (row_col (car matr1) matr2) (Multiplay (cdr matr1) matr2)))
     )
 )
 
+;С‚СЂР°РЅСЃРїРѕРЅРёСЂРѕРІР°РЅРёРµ
+(defun Transp (matr)
+    (apply 'mapcar 'list matr)
+)
 
-; максимум по строке
+
+
+; РјР°РєСЃРёРјСѓРј РїРѕ СЃС‚СЂРѕРєРµ
 (defun max_s (matr)
    (cond    
         ((null (cdr matr)) (car matr))
@@ -54,7 +60,7 @@
    )
 )
 
-; минимум по строке
+; РјРёРЅРёРјСѓРј РїРѕ СЃС‚СЂРѕРєРµ
 (defun min_s (matr)
    (cond    
         ((null (cdr matr)) (car matr))
@@ -71,7 +77,7 @@
         (t (seq_sig (- n 1) (append res (list (- (car (last res)))))))
     )
 )
-; строка на все столбцы
+; СЃС‚СЂРѕРєР° РЅР° РІСЃРµ СЃС‚РѕР»Р±С†С‹
 (defun row_col (row matr)
     (cond
         ((null (car matr)) nil)
@@ -86,14 +92,14 @@
 
 
 
-;возвращает список чисел от 1 до n
+;РІРѕР·РІСЂР°С‰Р°РµС‚ СЃРїРёСЃРѕРє С‡РёСЃРµР» РѕС‚ 1 РґРѕ n
 (defun seq (n)
     (cond
         ((= n 0) nil)
         (t (append (seq (- n 1)) (list n))) 
     )
 )
-;удалить элемент списка
+;СѓРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°
 (defun del_el (lst n)
     (cond 
         ((= n 1) (cdr lst))
@@ -101,12 +107,12 @@
     )
 ) 
 
- ;минора матрицы
+ ;РјРёРЅРѕСЂР° РјР°С‚СЂРёС†С‹
 (defun minor (matr m)
     (mapcar #'(lambda (x) (del_el x m)) (del_el matr 1))
 )
  
-;следующий столбец
+;СЃР»РµРґСѓСЋС‰РёР№ СЃС‚РѕР»Р±РµС†
 (defun other_column(matr)
     (cond
         ((null matr) nil)
@@ -114,7 +120,7 @@
         )
     )
 )
-;строка на столбец
+;СЃС‚СЂРѕРєР° РЅР° СЃС‚РѕР»Р±РµС†
 (defun column(matr)
     (cond
         ((null matr) nil)
@@ -123,13 +129,29 @@
 )
 
 
-;транспонирование
-(defun trans (matr)
-    (apply 'mapcar 'list matr)
-)
 
+(print "Transp: ((1 2 3) (4 5 6) (7 8 9))")
+(print (Transp '((1 2 3) (4 5 6) (7 8 9))))
 
+(write-line "")
+(print "Maxx: ((1 2 3) (4 5 6) (7 8 9))")
+(print (Maxx '((1 2 3) (4 5 6) (7 8 9))))
 
-(print (trans '((1 2 3) (4 5 6) (7 8 9))))
+(write-line "")
+(print "Minn: ((1 2 3) (4 5 6) (7 8 9))")
+(print (Minn '((1 2 3) (4 5 6) (7 8 9))))
+
+(write-line "")
+(print "Determ: ((3 5 1) (4 5 6) (7 8 9))")
+(print (Determ '((3 5 1) (4 5 6) (7 8 9))))
+
+(write-line "")
+(print "Sum: ((1 2 3) (4 5 6) (7 8 9))")
+(print (Sum '((1 2 3) (4 5 6) (7 8 9)) '((1 2 3) (4 5 6) (7 8 9))))
+
+(write-line "")
+(print "Multiplay: ((1 2 3) (4 5 6) (7 8 9))")
+(print (Multiplay '((1 2 3) (4 5 6) (7 8 9)) '((1 2 3) (4 5 6) (7 8 9))))
+
 
 
