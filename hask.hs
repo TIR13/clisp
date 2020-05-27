@@ -18,3 +18,22 @@ main = do
 print $ m ["1", "2", "3"] ["a", "b", "c"]
 print $ m ["1", "2", "3"] ["a"]
 
+
+--26 Реализовать алгоритм сортировки слиянием.
+
+sort [] = []
+sort [l] = [l]
+sort l =
+    m (sort first) (sort second) where
+        first = take ((length l) `div` 2) l
+        second = drop ((length l) `div` 2) l
+
+m f [] = f
+m [] s = s
+m (f:ft) (s:st)
+  | f < s     = f:(m ft (s:st))
+  | otherwise = s:(m (f:ft) st)
+
+
+main = do
+print $ sort  [6,1,0,3,2]
