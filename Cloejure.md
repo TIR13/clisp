@@ -145,4 +145,7 @@ Hello, World!
 
 
 ```
-
+https://clojure.org/
+https://habr.com/ru/post/173071/
+http://alexott.net/ru/clojure/clojure-intro/
+https://www.ibm.com/developerworks/ru/library/os-eclipse-clojure/index.html
