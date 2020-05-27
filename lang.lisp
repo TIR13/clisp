@@ -130,28 +130,60 @@
 
 
 
-(print "Transp: ((1 2 3) (4 5 6) (7 8 9))")
-(print (Transp '((1 2 3) (4 5 6) (7 8 9))))
+(defun out (whole)
+    ((lambda (first second rest ost)
+        (cond
+            ((null whole) 'Matrix)
+            ((and 
+                (eq second '=)
+                (eq (cadr ost) '=)
+            )
+            (and 
+                (setq m1 rest n1 first)(print first)(princ '=)(princ rest)
+                (setq m2 (caddr ost) n2 (car ost))(print (car ost))(princ '=)(princ m2)(out (cdddr ost))))
+            ((eq second '=) (and (setq m1 m2 n1 n2)(setq m2 rest n2 first)(print first)(princ '=)(princ rest)(out ost)))
+            ((eq first '*) (and (print (multiplay m1 m2)) (out (cdr whole))))
+            ((eq first '+) (and (print (Sum m1 m2)) (out (cdr whole))))
+            ((eq first 'max) (and (print (Maxx m2)) (out (cdr whole))))
+            ((eq first 'min) (and (print (Minn m2)) (out (cdr whole))))
+            ((eq first 't) (and (print (Transp m2)) (out (cdr whole))))
+            ((eq first '@) (and (print n2)(princ '=)(princ m2) (out (cdr whole))))
+            (t (print whole))
+     )
+             
+     
+   )(car whole)(cadr whole)(caddr whole)(cdddr whole)
+)
+    )
 
-(write-line "")
-(print "Maxx: ((1 2 3) (4 5 6) (7 8 9))")
-(print (Maxx '((1 2 3) (4 5 6) (7 8 9))))
 
-(write-line "")
-(print "Minn: ((1 2 3) (4 5 6) (7 8 9))")
-(print (Minn '((1 2 3) (4 5 6) (7 8 9))))
+(defmacro Matrix (&rest tokens )
+	`(let
+		(
+                (whole ',tokens)
+        	(val Nil)
+		)
+      (out whole)
 
-(write-line "")
-(print "Determ: ((3 5 1) (4 5 6) (7 8 9))")
-(print (Determ '((3 5 1) (4 5 6) (7 8 9))))
+	)
+)
 
-(write-line "")
-(print "Sum: ((1 2 3) (4 5 6) (7 8 9))")
-(print (Sum '((1 2 3) (4 5 6) (7 8 9)) '((1 2 3) (4 5 6) (7 8 9))))
-
-(write-line "")
-(print "Multiplay: ((1 2 3) (4 5 6) (7 8 9))")
-(print (Multiplay '((1 2 3) (4 5 6) (7 8 9)) '((1 2 3) (4 5 6) (7 8 9))))
+(Matrix 
+    M1 = ((3 5 1) (4 5 6) (7 8 9))
+    M2 = ((1 2 4) (4 5 6) (7 8 9)) 
+    *
+    +
+    max 
+    min 
+    t
+    M1 = ((4 5 1) (4 5 6) (7 8 9))
+    *
+    +
+    max 
+    min 
+    t
+    @
+)
 
 
 
