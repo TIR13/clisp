@@ -21,7 +21,7 @@ main = do
     print $ [1, 2, 3] \\ [3]
 
 
----Написать генератор деррева 
+---3Написать генератор деррева 
 
 data Tree a = Empty | Branch a (Tree a) (Tree a)
               deriving (Show, Eq)
